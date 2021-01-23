@@ -8,3 +8,8 @@ RUN apt update \
 
 COPY requirements.txt ./
 RUN pip3 -v --no-cache-dir install -r requirements.txt && rm -rf requirements.txt
+
+COPY . .
+RUN cp ./docker/production/was.supervisord.conf /etc/supervisor/conf.d
+
+ENTRYPOINT ["sh", "./service.sh"]

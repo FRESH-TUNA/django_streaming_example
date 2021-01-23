@@ -7,8 +7,8 @@ DEBUG = True
 SECRET_KEY = os.environ['SECRET_KEY']
 
 ROOT_URLCONF = 'config.urls.development'
-#media 설정
 
+#media 설정
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
