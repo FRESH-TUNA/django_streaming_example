@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  database:
+    env_file: 
+      - .env
+    image: postgres:12.2-alpine
+    container_name: database.development.streaming_example
+    volumes:
+      - database.development.streaming_example:/var/lib/postgresql/data
+  app:
+    env_file:
+      - .env
+    container_name: logic.development.streaming_example
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    volumes:
+      - "./:/app"
+    ports:
+      - "8000:8000"
+
+volumes:
+  database.development.streaming_example:
+    external: true

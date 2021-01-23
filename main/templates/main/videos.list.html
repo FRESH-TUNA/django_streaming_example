@@ -1,0 +1,18 @@
+{% extends 'layout/index.html' %}
+
+{% load static %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block contents %}
+{% for video in datas %}
+<a href="{{ video.url }}">
+  <p style="word-break:break-all">{{video.url|truncatechars_html:100}}</p>
+</a>
+{% endfor %}
+{% endblock %}
+
+{% block js %}
+{% endblock %}
