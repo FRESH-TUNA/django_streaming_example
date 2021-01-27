@@ -16,7 +16,6 @@ import os
 AUTH_USER_MODEL = 'streaming_example-auth.User'
 
 ALLOWED_HOSTS = ["*"]
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 INSTALLED_APPS = [
