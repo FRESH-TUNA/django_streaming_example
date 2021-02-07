@@ -1,30 +1,22 @@
 from .base import *
-from .production_envs import (
-    APP_SECRET_KEY, DB_NAME, DB_USER, DB_PASSWORD, DB_HOST, DB_PORT)
 from django.conf import settings
 import os
 
 DEBUG = False
-SECRET_KEY = APP_SECRET_KEY
+ALLOWED_HOST = [os.environ['ALLOWED_HOST']]
 ROOT_URLCONF = 'config.urls.production'
-# Database
-# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': DB_NAME,
-        'USER': DB_USER,
-        'PASSWORD': DB_PASSWORD,
-        'HOST': DB_HOST,
-        'PORT': DB_PORT
-    }
-}
+
+SECRET_KEY = os.environ['SECRET_KEY']
+AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
+CLOUDFRONT_URL = os.environ['CLOUDFRONT_URL']
+CLOUDFRONT_PRIVATE_KEY = os.environ['CLOUDFRONT_PRIVATE_KEY']
+CLOUDFRONT_KEY_PAIR_ID = os.environ['CLOUDFRONT_KEY_PAIR_ID']
 
 from storages.backends.s3boto3 import S3Boto3Storage
 from django.contrib.staticfiles.storage import ManifestFilesMixin
-AWS_STORAGE_BUCKET_NAME = "cloudfronttunatest"
-AWS_S3_DOMAIN = "https://%s.s3.amazonaws.com" % "cloudfronttunatest/"
-AWS_S3_CUSTOM_DOMAIN = "d2ks81gvij7wx9.cloudfront.net"
+
+AWS_S3_DOMAIN = "https://%s.s3.amazonaws.com" % AWS_STORAGE_BUCKET_NAME
+AWS_S3_CUSTOM_DOMAIN = CLOUDFRONT_URL
 
 # Static Setting
 STATIC_URL = "https://%s/" % AWS_S3_DOMAIN
