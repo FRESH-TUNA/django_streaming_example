@@ -30,7 +30,7 @@ def login(request):
             auth.login(request, user)
             cloudfrontutil = CloudFrontUtil(settings.CLOUDFRONT_PRIVATE_KEY, settings.CLOUDFRONT_KEY_PAIR_ID)
             response = redirect('main:videos-list')
-            if os.environ['DJANGO_SETTINGS_MODULE'] == 'config.settings.production':
+            if os.environ['DJANGO_SETTINGS_MODULE'] == 'config.environments.production':
                 signed_cookies = cloudfrontutil.generate_signed_cookies(
                     f"https://{settings.CLOUDFRONT_URL}/*", datetime.datetime.now() + datetime.timedelta(days=1))
                 for name,value in signed_cookies.items():
