@@ -7,4 +7,7 @@ cloudfront는 edge location을 통한 컨텐츠의 빠른 다운로드, 업로�
 ![Image Alt 텍스트](/scenario_6.png)
 
 ## cloudfront 설정 관련 코드
-[<a href="/auth/services/cloudfront.py">code</a>]
+### cloudfront cookie 생성 로직
+[<a href="/auth/services/cloudfront.py">클릭</a>]
+### 컨트롤러
+[<a href="/auth/views.py">클릭</a>]
