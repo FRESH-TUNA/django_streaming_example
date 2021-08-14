@@ -2,7 +2,8 @@ from storages.backends.s3boto3 import S3Boto3Storage
 from django.contrib.staticfiles.storage import ManifestFilesMixin
 
 class StaticStorage(ManifestFilesMixin, S3Boto3Storage):
-    location = 'static'
+    pass
+    # location = 'static'
 
     # def read_manifest(self):
     #     try:

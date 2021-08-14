@@ -118,8 +118,23 @@ USE_L10N = True
 
 USE_TZ = True
 
+
+AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
+CLOUDFRONT_URL = os.environ['CLOUDFRONT_URL']
+CLOUDFRONT_PRIVATE_KEY = os.environ['CLOUDFRONT_PRIVATE_KEY']
+CLOUDFRONT_KEY_PAIR_ID = os.environ['CLOUDFRONT_KEY_PAIR_ID']
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
+AWS_S3_DOMAIN = "https://%s.s3.amazonaws.com" % AWS_STORAGE_BUCKET_NAME
+AWS_S3_CUSTOM_DOMAIN = CLOUDFRONT_URL
+
+# Static Setting
+STATIC_URL = "https://%s/static/" % AWS_S3_DOMAIN
+STATICFILES_STORAGE = 'config.storages.static_storage.StaticStorage' 
+
+# Media Setting
+MEDIA_URL = "https://%s/media/" % AWS_S3_DOMAIN
+DEFAULT_FILE_STORAGE = 'config.storages.media_storage.MediaStorage' 
+
